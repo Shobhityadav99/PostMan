@@ -48,7 +48,7 @@ let submit=document.getElementById("submit");
 submit.addEventListener('click',()=>{
 
     
-    let url=document.getElementById("url");
+    let url=document.getElementById("url").value;
     let requestType=document.querySelector("input[name='requestType']:checked").value;
     let contentType=document.querySelector("input[name='contentType']:checked").value;
 
@@ -74,8 +74,17 @@ submit.addEventListener('click',()=>{
             document.getElementById('responseJsonText').value=text;
         });
     } else {
-        
-    }
+        fetch(url,{
+            method: 'POST',
+            body: data,
+            headers: {
+                'Content-type':"application/json: charset=UTF-8"
+            }
+        }).then(response => response.text())
+        .then((text)=>{
+            document.getElementById('responseJsonText').value=text;
+        });
 
+    }
     console.log(data);
 })
