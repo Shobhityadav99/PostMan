@@ -64,7 +64,17 @@ submit.addEventListener('click',()=>{
         data=JSON.stringify(data);
     } else {
         data = document.getElementById('responseJsonText').value;
+    }
 
+    if(requestType=='GET'){
+        fetch(url,{
+            method: 'GET',
+        }).then(response => response.text())
+        .then((text)=>{
+            document.getElementById('responseJsonText').value=text;
+        });
+    } else {
+        
     }
 
     console.log(data);
