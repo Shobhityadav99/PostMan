@@ -47,8 +47,7 @@ addParam.addEventListener('click',()=>{
 let submit=document.getElementById("submit");
 submit.addEventListener('click',()=>{
 
-    document.getElementById('responseJsonText').value="Please Wait.....";
-
+    
     let url=document.getElementById("url");
     let requestType=document.querySelector("input[name='requestType']:checked").value;
     let contentType=document.querySelector("input[name='contentType']:checked").value;
@@ -57,10 +56,16 @@ submit.addEventListener('click',()=>{
         data={};
         for(i=0;i<addParamCount+1;i++){
             if(document.getElementById("parameterKey"+(i+1)) != undefined){
-            let key=document.getElementById("parameterKey"+(i+1)).value;
-            let value=document.getElementById("parameterValue"+(i+1)).value;
-            data[key]=value;
+                let key=document.getElementById("parameterKey"+(i+1)).value;
+                let value=document.getElementById("parameterValue"+(i+1)).value;
+                data[key]=value;
             }
         }
+        data=JSON.stringify(data);
+    } else {
+        data = document.getElementById('responseJsonText').value;
+
     }
+
+    console.log(data);
 })
